@@ -8,18 +8,19 @@
 import SwiftUI
 
 struct TodoListItem: View {
-    let text: String
+    let todo: ToDoItem
 
     var body: some View {
         HStack(spacing: 12) {
-            Image(systemName: "circle")
+            Image(systemName: todo.completed ? "checkmark.circle.fill" : "circle")
                 .symbolRenderingMode(.hierarchical)
                 .resizable()
                 .foregroundStyle(Color.primaryAccent)
                 .frame(width: 28, height: 28)
 
-            Text(text)
+            Text(todo.title)
                 .font(.body)
+                .strikethrough(todo.completed)
                 .foregroundStyle(Color.primaryText)
                 .frame(maxWidth: .infinity, alignment: .leading)
         }
@@ -30,11 +31,8 @@ struct TodoListItem: View {
 
 #Preview {
     VStack {
-        TodoListItem(text: "Walk the cat")
-        TodoListItem(text: "Walk the cat")
-        TodoListItem(text: "Walk the cat")
-        TodoListItem(text: "Walk the cat")
-        Spacer()
+        TodoListItem(todo: ToDoItem.mock(title: "Walk the cat", completed: false))
+        TodoListItem(todo: ToDoItem.mock(title: "Walk the cat", completed: true))
     }
     .padding()
     .background(Color.primaryBackground)

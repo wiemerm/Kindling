@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct TodoListView: View {
-    let tempList = ["Buy cat food", "Learn SwiftUI", "Go for a walk"]
+    @State private var viewModel = TodoListViewModel()
 
     var body: some View {
-        List(tempList, id: \.self) { todoItem in
-            TodoListItem(text: todoItem)
+        List(viewModel.todos) { todoItem in
+            TodoListItem(todo: todoItem)
                 .listRowBackground(RoundedRectangle(cornerRadius: 12).fill(Color.secondaryBackground))
         }
         .listRowSpacing(4)
