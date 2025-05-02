@@ -11,12 +11,12 @@ struct TodoListItem: View {
     let todo: ToDoItem
 
     var body: some View {
-        HStack(spacing: 12) {
+        HStack(spacing: Spacing.small) {
             Image(systemName: todo.completed ? "checkmark.circle.fill" : "circle")
                 .symbolRenderingMode(.hierarchical)
                 .resizable()
                 .foregroundStyle(Color.primaryAccent)
-                .frame(width: 28, height: 28)
+                .frame(width: ImageSize.small, height: ImageSize.small)
 
             Text(todo.title)
                 .font(.body)
@@ -24,7 +24,7 @@ struct TodoListItem: View {
                 .foregroundStyle(Color.primaryText)
                 .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .padding(.vertical, 8)
+        .padding(.vertical, Spacing.extraSmall)
         .frame(maxWidth: .infinity)
     }
 }

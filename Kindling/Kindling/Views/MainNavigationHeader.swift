@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainNavigationHeader: View {
     var body: some View {
-        HStack(spacing: 4) {
+        HStack(spacing: Spacing.extraExtraSmall) {
             Image(systemName: "flame")
                 .symbolRenderingMode(.hierarchical)
                 .resizable()
@@ -25,13 +25,12 @@ struct MainNavigationHeader: View {
                         endPoint: .top
                     )
                 )
-                .frame(width: 44, height: 44)
+                .frame(width: ImageSize.small, height: ImageSize.small)
 
             Text("Kindling")
-                .font(.largeTitle)
+                .font(.title)
                 .foregroundStyle(Color.primaryAccent)
         }
-        .padding(.top, 20)
     }
 }
 

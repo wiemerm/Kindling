@@ -15,17 +15,6 @@ extension View {
                     ToolbarItem(placement: .principal) {
                         MainNavigationHeader()
                     }
-
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button(
-                            action: {
-                                print("Import")
-                            },
-                            label: {
-                                Image(systemName: "square.and.arrow.down")
-                                    .tint(.primaryAccent)
-                            })
-                    }
                 }
         }
     }

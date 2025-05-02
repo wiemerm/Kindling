@@ -11,20 +11,21 @@ struct TodoListView: View {
     @State private var viewModel = TodoListViewModel()
 
     var body: some View {
-        VStack {
-            // TODO: Create file for textfield and add button that updates the todos in viewmodel
-            TextField("Walk the cat", text: $viewModel.todoText)
-
+        VStack(alignment: .leading, spacing: 0) {
+            QuickAddToDoView(addAction: viewModel.addTodo(title:))
+                .padding(.horizontal, Spacing.large)
             List {
                 ForEach(viewModel.todos) { todoItem in
                     TodoListItem(todo: todoItem)
-                        .listRowBackground(RoundedRectangle(cornerRadius: 12).fill(Color.secondaryBackground))
+                        .listRowBackground(
+                            RoundedRectangle(cornerRadius: Spacing.small)
+                                .fill(Color.secondaryBackground)
+                        )
                 }
                 .onDelete(perform: viewModel.delete)
             }
-            .listRowSpacing(4)
+            .listRowSpacing(Spacing.extraSmall)
             .scrollContentBackground(.hidden)
-
         }
         .background(.primaryBackground)
         .navigationHeader()
