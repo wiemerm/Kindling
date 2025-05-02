@@ -5,6 +5,7 @@
 //  Created by Megan Wiemer on 5/1/25.
 //
 
+import Foundation
 import Testing
 @testable import Kindling
 
@@ -21,5 +22,15 @@ struct TodoListViewViewModelTestSuite {
 
         #expect(viewModel.todos.count == 6)
         #expect(viewModel.todos.last?.title == newTodo)
+    }
+
+    @Test func removeTodoItemFromList() async throws {
+        #expect(viewModel.todos.count == 5)
+
+        let indexSet = IndexSet(integer: 0)
+
+        viewModel.delete(at: indexSet)
+
+        #expect(viewModel.todos.count == 4)
     }
 }
