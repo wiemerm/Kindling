@@ -11,11 +11,6 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             TodoListView()
-                .toolbar {
-                    ToolbarItem(placement: .principal) {
-                        MainNavigationHeader()
-                    }
-                }
         }
     }
 }

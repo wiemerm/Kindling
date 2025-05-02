@@ -21,8 +21,8 @@ struct MainNavigationHeader: View {
                             .primaryAccent,
                             .highlight
                     ],
-                        startPoint: .top,
-                        endPoint: .bottom
+                        startPoint: .bottom,
+                        endPoint: .top
                     )
                 )
                 .frame(width: 44, height: 44)

@@ -9,7 +9,7 @@ struct ToDoItem: Codable, Identifiable {
     let id: Int
     let title: String
     let userId: Int
-    var completed: Bool
+    var completed: Bool = false
 }
 
 #if DEBUG
