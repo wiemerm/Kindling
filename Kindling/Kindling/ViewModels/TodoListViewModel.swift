@@ -41,8 +41,8 @@ class TodoListViewModel {
             let todo = todos[index]
             Task {
                 await dataSource.delete(todo)
+                fetchStoredTodos()
             }
         }
-        fetchStoredTodos()
     }
 }

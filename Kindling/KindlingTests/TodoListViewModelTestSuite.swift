@@ -43,7 +43,7 @@ struct TodoListViewViewModelTestSuite {
 
         viewModel.delete(at: indexSet)
 
-        try? await Task.sleep(for: .seconds(5)) // TODO: Get rid of this!
+        try? await Task.sleep(for: .seconds(1)) // TODO: Get rid of this!
 
         #expect(viewModel.todos.isEmpty)
     }
@@ -61,6 +61,6 @@ class MockToDoDataService: ToDoDataService {
     }
 
     func delete(_ item: ToDoItem) {
-
+        todoItems.removeAll { $0.id == item.id }
     }
 }
