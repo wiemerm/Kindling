@@ -8,53 +8,45 @@
 import SwiftData
 import Foundation
 
-protocol ToDoDataService {
-    func insert(_ item: ToDoItem) async
-    func delete(_ item: ToDoItem) async
-    func loadAllToDoItems() async -> [ToDoItem]
+protocol TaskService {
+    func insert(_ item: ToDo) async
+    func delete(_ item: ToDo) async
+    func loadLocalTaskItems() async -> [ToDo]
+    func fetchRemoteTaskItems() async throws
 }
 
-class DefaultToDoDataService: ToDoDataService {
-    private let container: ModelContainer?
-    private let context: ModelContext?
+class DefaultToDoDataService: TaskService {
+    private let manager: TaskSwiftDataManager
+    private let networkService: NetworkService
 
-    init(manager: TodoSwiftDataManager = .shared) {
-        self.container = manager.container
-        self.context = manager.context
+    init(
+        manager: TaskSwiftDataManager,
+        networkService: NetworkService = DefaultNetworkService()
+    ) {
+        self.manager = manager
+        self.networkService = networkService
     }
 
-    func insert(_ item: ToDoItem) async {
-        await MainActor.run {
-            self.container?.mainContext.insert(item)
-            do {
-                try self.container?.mainContext.save()
-            } catch {
-                print(">>> Log Error Saving ToDoItem: \(error)")
-            }
+    func insert(_ item: ToDo) async {
+        Task {
+            await manager.insert(item)
         }
     }
 
-    func delete(_ item: ToDoItem) async {
-        await MainActor.run {
-            self.container?.mainContext.delete(item)
-            do {
-                try self.container?.mainContext.save()
-            } catch {
-                print(">>> Log Error Deleting ToDoItem: \(error)")
-            }
+    func delete(_ item: ToDo) async {
+        Task {
+            await manager.delete(item)
         }
     }
 
-    func loadAllToDoItems() async -> [ToDoItem] {
-        await MainActor.run {
-            let fetchDescriptor = FetchDescriptor<ToDoItem>(sortBy: [SortDescriptor(\.id, order: .forward)])
-            do {
-                let items = try self.container?.mainContext.fetch(fetchDescriptor)
-                return items ?? []
-            } catch {
-                print(">>> Log Error Loading ToDoItems: \(error)")
-                return []
-            }
-        }
+    func loadLocalTaskItems() async -> [ToDo] {
+        // Limitting to a hard-coded userId of 1 as filtering on other users would occur w/
+        // a switch user functionality and introduction of some type of User
+        await manager.loadLocalTaskItems().filter { $0.userId == 1 }
+    }
+
+    func fetchRemoteTaskItems() async throws {
+        let remoteTasks = try await networkService.fetchRemoteTasks()
+        await manager.insert(remoteTasks)
     }
 }

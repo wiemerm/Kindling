@@ -36,31 +36,33 @@ struct TodoListViewViewModelTestSuite {
 
         viewModel.addTodo(title: "new item")
 
-        try? await Task.sleep(for: .seconds(1)) // TODO: Get rid of this!
+        // TODO: Get rid of this!
+        try? await Task.sleep(for: .seconds(1))
         #expect(viewModel.todos.count == 1)
 
         let indexSet = IndexSet(integer: 0)
 
         viewModel.delete(at: indexSet)
 
-        try? await Task.sleep(for: .seconds(1)) // TODO: Get rid of this!
+        // TODO: Get rid of this!
+        try? await Task.sleep(for: .seconds(1))
 
         #expect(viewModel.todos.isEmpty)
     }
 }
 
-class MockToDoDataService: ToDoDataService {
-    private(set) var todoItems = [ToDoItem]()
+class MockToDoDataService: TaskService {
+    private(set) var todoItems = [ToDo]()
 
-    func loadAllToDoItems() async -> [ToDoItem] {
+    func loadLocalTaskItems() async -> [ToDo] {
         todoItems
     }
 
-    func insert(_ item: ToDoItem) {
+    func insert(_ item: ToDo) {
         todoItems.append(item)
     }
 
-    func delete(_ item: ToDoItem) {
+    func delete(_ item: ToDo) {
         todoItems.removeAll { $0.id == item.id }
     }
 }

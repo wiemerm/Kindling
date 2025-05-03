@@ -10,29 +10,27 @@ import SwiftUI
 
 @Observable
 class TodoListViewModel {
-    private(set) var todos = [ToDoItem]()
-    private let dataSource: ToDoDataService
+    private(set) var todos = [ToDo]()
+    private let service: TaskService
 
-    init(dataSource: ToDoDataService) {
-        self.dataSource = dataSource
-        fetchStoredTodos()
+    init(dataSource: TaskService) {
+        self.service = dataSource
+        fetchStoredTasks()
     }
 
-    func fetchStoredTodos() {
+    func fetchStoredTasks() {
         Task {
-            todos = await dataSource.loadAllToDoItems()
+            todos = await service.loadLocalTaskItems()
         }
     }
 
     func addTodo(title: String) {
+        // For the sake of example limiting to userId 1
+        // This would change when supporting switching users as json includes more than userId: 1
+        let newTodo = ToDo(id: todos.count, title: title, userId: 1, completed: false)
         Task {
-            // TODO: userId could likely be deleted in this instance as there is no switching users
-            // but verify this against the todo json first
-            let newTodo = ToDoItem(id: todos.count, title: title, userId: 1, completed: false)
-            Task {
-                await dataSource.insert(newTodo)
-                fetchStoredTodos()
-            }
+            await service.insert(newTodo)
+            fetchStoredTasks()
         }
     }
 
@@ -40,8 +38,20 @@ class TodoListViewModel {
         indexSet.forEach { index in
             let todo = todos[index]
             Task {
-                await dataSource.delete(todo)
-                fetchStoredTodos()
+                await service.delete(todo)
+                fetchStoredTasks()
+            }
+        }
+    }
+
+    func importTasks() {
+        Task {
+            do {
+                try await service.fetchRemoteTaskItems()
+                fetchStoredTasks()
+            } catch {
+                print(">>> Failure to fetch and update tasks: \(error.localizedDescription)")
+                // Would want to handle error here, propogating it to end user
             }
         }
     }

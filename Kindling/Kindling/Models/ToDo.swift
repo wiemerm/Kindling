@@ -8,7 +8,7 @@
 import SwiftData
 
 @Model
-class ToDoItem: Decodable, Identifiable {
+class ToDo: Decodable, Identifiable {
     enum CodingKeys: CodingKey {
         case id
         case title
@@ -38,14 +38,14 @@ class ToDoItem: Decodable, Identifiable {
 }
 
 #if DEBUG
-extension ToDoItem {
+extension ToDo {
     static func mock(
         id: Int = Int.random(in: 0..<1000),
         title: String = "Todo Item",
         userId: Int = 1,
         completed: Bool = false
-    ) -> ToDoItem {
-        ToDoItem(
+    ) -> ToDo {
+        ToDo(
             id: id,
             title: title,
             userId: userId,

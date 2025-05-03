@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension View {
-    func navigationHeader() -> some View {
+    func navigationHeader(importHandler: (() -> Void)? = nil) -> some View {
         NavigationStack {
             self
                 .toolbar {
@@ -16,14 +16,16 @@ extension View {
                         MainNavigationHeader()
                     }
 
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button(
-                            action: { },
-                            label: {
+                    if let importHandler {
+                        ToolbarItem(placement: .topBarTrailing) {
+                            Button {
+                                print("Fetch remote tasks")
+                                importHandler()
+                            } label: {
                                 Image(systemName: "square.and.arrow.down")
                                     .tint(.primaryAccent)
                             }
-                        )
+                        }
                     }
                 }
         }

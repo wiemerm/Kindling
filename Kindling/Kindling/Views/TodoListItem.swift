@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TodoListItem: View {
-    let todo: ToDoItem
+    let todo: ToDo
 
     var body: some View {
         HStack(spacing: Spacing.small) {
@@ -35,8 +35,8 @@ struct TodoListItem: View {
 
 #Preview {
     VStack {
-        TodoListItem(todo: ToDoItem.mock(title: "Walk the cat", completed: false))
-        TodoListItem(todo: ToDoItem.mock(title: "Walk the cat", completed: true))
+        TodoListItem(todo: ToDo.mock(title: "Walk the cat", completed: false))
+        TodoListItem(todo: ToDo.mock(title: "Walk the cat", completed: true))
     }
     .padding()
     .background(Color.primaryBackground)

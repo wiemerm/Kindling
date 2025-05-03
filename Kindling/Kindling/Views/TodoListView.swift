@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TodoListView: View {
-    @State private var viewModel = TodoListViewModel(dataSource: DefaultToDoDataService())
+    @State private var viewModel = TodoListViewModel(dataSource: DefaultToDoDataService(manager: .shared))
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -28,7 +28,7 @@ struct TodoListView: View {
             .scrollContentBackground(.hidden)
         }
         .background(.primaryBackground)
-        .navigationHeader()
+        .navigationHeader(importHandler: viewModel.importTasks)
     }
 }
 
