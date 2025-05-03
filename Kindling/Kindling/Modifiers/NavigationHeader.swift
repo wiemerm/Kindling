@@ -15,6 +15,16 @@ extension View {
                     ToolbarItem(placement: .principal) {
                         MainNavigationHeader()
                     }
+
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button(
+                            action: { },
+                            label: {
+                                Image(systemName: "square.and.arrow.down")
+                                    .tint(.primaryAccent)
+                            }
+                        )
+                    }
                 }
         }
     }

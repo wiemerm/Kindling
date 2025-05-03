@@ -17,6 +17,10 @@ struct TodoListItem: View {
                 .resizable()
                 .foregroundStyle(Color.primaryAccent)
                 .frame(width: ImageSize.small, height: ImageSize.small)
+                .onTapGesture {
+                    todo.completed.toggle()
+                    // TODO: propogate the toggling the completion such that it can be saved in database
+                }
 
             Text(todo.title)
                 .font(.body)

@@ -7,14 +7,15 @@
 
 import SwiftUI
 
-// TODO: Desireable behavior to resign textfield when tapping outside of it anywhere else on screen
 struct QuickAddToDoView: View {
     let addAction: (String) -> Void
     @State var text = ""
+    @FocusState private var isFocused: Bool
 
     var body: some View {
         HStack {
             TextField("Enter text...", text: $text)
+                .focused($isFocused)
                 .foregroundStyle(Color.primaryText)
                 .padding(.horizontal, Spacing.small)
                 .frame(
@@ -25,11 +26,9 @@ struct QuickAddToDoView: View {
                     RoundedRectangle(cornerRadius: CornerRadius.standard)
                         .fill(Color.secondaryBackground)
                 }
-                .onSubmit { addAction(text) }
+                .onSubmit(submit)
 
-            Button("Add") {
-                addAction(text)
-            }
+            Button("Add", action: submit)
             .foregroundStyle(Color.primaryText)
             .padding(Spacing.extraSmall)
             .background {
@@ -41,6 +40,12 @@ struct QuickAddToDoView: View {
                     )
             }
         }
+    }
+
+    private func submit() {
+        addAction(text)
+        text = ""
+        isFocused = false
     }
 }
 

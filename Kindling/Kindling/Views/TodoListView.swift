@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TodoListView: View {
-    @State private var viewModel = TodoListViewModel()
+    @State private var viewModel = TodoListViewModel(dataSource: DefaultToDoDataService())
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {

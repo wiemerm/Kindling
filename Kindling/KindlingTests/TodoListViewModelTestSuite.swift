@@ -9,28 +9,58 @@ import Foundation
 import Testing
 @testable import Kindling
 
+@MainActor
 struct TodoListViewViewModelTestSuite {
-    let viewModel = TodoListViewModel()
+    var mockDataService = MockToDoDataService()
+    var viewModel: TodoListViewModel
+
+    init() {
+        viewModel = TodoListViewModel(dataSource: mockDataService)
+    }
 
     @Test func addTodoItemToList() async throws {
-        // TODO: When removing the mocks make sure to update this to isEmpty to start
-        #expect(viewModel.todos.count == 5)
+        #expect(viewModel.todos.isEmpty)
 
         let newTodo = "todoItem".appendRandom()
 
         viewModel.addTodo(title: newTodo)
 
-        #expect(viewModel.todos.count == 6)
+        try? await Task.sleep(for: .seconds(1)) // TODO: Get rid of this!
+
+        #expect(viewModel.todos.count == 1)
         #expect(viewModel.todos.last?.title == newTodo)
     }
 
     @Test func removeTodoItemFromList() async throws {
-        #expect(viewModel.todos.count == 5)
+        #expect(viewModel.todos.isEmpty)
+
+        viewModel.addTodo(title: "new item")
+
+        try? await Task.sleep(for: .seconds(1)) // TODO: Get rid of this!
+        #expect(viewModel.todos.count == 1)
 
         let indexSet = IndexSet(integer: 0)
 
         viewModel.delete(at: indexSet)
 
-        #expect(viewModel.todos.count == 4)
+        try? await Task.sleep(for: .seconds(5)) // TODO: Get rid of this!
+
+        #expect(viewModel.todos.isEmpty)
+    }
+}
+
+class MockToDoDataService: ToDoDataService {
+    private(set) var todoItems = [ToDoItem]()
+
+    func loadAllToDoItems() async -> [ToDoItem] {
+        todoItems
+    }
+
+    func insert(_ item: ToDoItem) {
+        todoItems.append(item)
+    }
+
+    func delete(_ item: ToDoItem) {
+
     }
 }

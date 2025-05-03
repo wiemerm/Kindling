@@ -14,19 +14,11 @@
 			remoteGlobalIDString = 637643862DC41B3A00A4E1A3;
 			remoteInfo = Kindling;
 		};
-		637643A22DC41B3A00A4E1A3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6376437F2DC41B3A00A4E1A3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 637643862DC41B3A00A4E1A3;
-			remoteInfo = Kindling;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		637643872DC41B3A00A4E1A3 /* Kindling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kindling.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		637643972DC41B3A00A4E1A3 /* KindlingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KindlingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		637643A12DC41B3A00A4E1A3 /* KindlingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KindlingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -38,11 +30,6 @@
 		6376439A2DC41B3A00A4E1A3 /* KindlingTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = KindlingTests;
-			sourceTree = "<group>";
-		};
-		637643A42DC41B3A00A4E1A3 /* KindlingUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = KindlingUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -62,13 +49,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6376439E2DC41B3A00A4E1A3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -77,7 +57,6 @@
 			children = (
 				637643892DC41B3A00A4E1A3 /* Kindling */,
 				6376439A2DC41B3A00A4E1A3 /* KindlingTests */,
-				637643A42DC41B3A00A4E1A3 /* KindlingUITests */,
 				637643882DC41B3A00A4E1A3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -87,7 +66,6 @@
 			children = (
 				637643872DC41B3A00A4E1A3 /* Kindling.app */,
 				637643972DC41B3A00A4E1A3 /* KindlingTests.xctest */,
-				637643A12DC41B3A00A4E1A3 /* KindlingUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -141,29 +119,6 @@
 			productReference = 637643972DC41B3A00A4E1A3 /* KindlingTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		637643A02DC41B3A00A4E1A3 /* KindlingUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 637643B12DC41B3A00A4E1A3 /* Build configuration list for PBXNativeTarget "KindlingUITests" */;
-			buildPhases = (
-				6376439D2DC41B3A00A4E1A3 /* Sources */,
-				6376439E2DC41B3A00A4E1A3 /* Frameworks */,
-				6376439F2DC41B3A00A4E1A3 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				637643A32DC41B3A00A4E1A3 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				637643A42DC41B3A00A4E1A3 /* KindlingUITests */,
-			);
-			name = KindlingUITests;
-			packageProductDependencies = (
-			);
-			productName = KindlingUITests;
-			productReference = 637643A12DC41B3A00A4E1A3 /* KindlingUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -178,10 +133,6 @@
 						CreatedOnToolsVersion = 16.2;
 					};
 					637643962DC41B3A00A4E1A3 = {
-						CreatedOnToolsVersion = 16.2;
-						TestTargetID = 637643862DC41B3A00A4E1A3;
-					};
-					637643A02DC41B3A00A4E1A3 = {
 						CreatedOnToolsVersion = 16.2;
 						TestTargetID = 637643862DC41B3A00A4E1A3;
 					};
@@ -206,7 +157,6 @@
 			targets = (
 				637643862DC41B3A00A4E1A3 /* Kindling */,
 				637643962DC41B3A00A4E1A3 /* KindlingTests */,
-				637643A02DC41B3A00A4E1A3 /* KindlingUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -220,13 +170,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		637643952DC41B3A00A4E1A3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6376439F2DC41B3A00A4E1A3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -271,13 +214,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6376439D2DC41B3A00A4E1A3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -285,11 +221,6 @@
 			isa = PBXTargetDependency;
 			target = 637643862DC41B3A00A4E1A3 /* Kindling */;
 			targetProxy = 637643982DC41B3A00A4E1A3 /* PBXContainerItemProxy */;
-		};
-		637643A32DC41B3A00A4E1A3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 637643862DC41B3A00A4E1A3 /* Kindling */;
-			targetProxy = 637643A22DC41B3A00A4E1A3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -509,40 +440,6 @@
 			};
 			name = Release;
 		};
-		637643B22DC41B3A00A4E1A3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2KLV3F3TB7;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.meganwiemer.KindlingUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Kindling;
-			};
-			name = Debug;
-		};
-		637643B32DC41B3A00A4E1A3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2KLV3F3TB7;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.meganwiemer.KindlingUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Kindling;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -569,15 +466,6 @@
 			buildConfigurations = (
 				637643AF2DC41B3A00A4E1A3 /* Debug */,
 				637643B02DC41B3A00A4E1A3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		637643B12DC41B3A00A4E1A3 /* Build configuration list for PBXNativeTarget "KindlingUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				637643B22DC41B3A00A4E1A3 /* Debug */,
-				637643B32DC41B3A00A4E1A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
