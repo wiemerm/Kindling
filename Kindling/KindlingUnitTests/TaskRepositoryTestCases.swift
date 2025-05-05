@@ -1,5 +1,5 @@
 //
-//  TaskRepositoryTestCase.swift
+//  TaskRepositoryTestCases.swift
 //  KindlingTests
 //
 //  Created by Megan Wiemer on 5/5/25.
@@ -8,7 +8,7 @@
 @testable import Kindling
 import XCTest
 
-final class TaskRepositoryTestCase: XCTestCase {
+final class TaskRepositoryTestCases: XCTestCase {
     var context: MockModelContext!
     var repository: DefaultTaskRepository!
 

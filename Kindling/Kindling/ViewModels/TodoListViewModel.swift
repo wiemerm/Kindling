@@ -20,7 +20,7 @@ class TodoListViewModel {
 
     func fetchStoredTasks() {
         Task {
-            todos = await service.loadLocalTaskItems()
+//            todos = await service.loadLocalTaskItems()
         }
     }
 
@@ -29,7 +29,7 @@ class TodoListViewModel {
         // This would change when supporting switching users as json includes more than userId: 1
         let newTodo = ToDo(id: todos.count, title: title, userId: 1, completed: false)
         Task {
-            await service.insert(newTodo)
+//            await service.insert(newTodo)
             fetchStoredTasks()
         }
     }
@@ -38,7 +38,7 @@ class TodoListViewModel {
         indexSet.forEach { index in
             let todo = todos[index]
             Task {
-                await service.delete(todo)
+//                await service.delete(todo)
                 fetchStoredTasks()
             }
         }
@@ -47,7 +47,7 @@ class TodoListViewModel {
     func importTasks() {
         Task {
             do {
-                try await service.fetchRemoteTaskItems()
+//                try await service.fetchRemoteTaskItems()
                 fetchStoredTasks()
             } catch {
                 print(">>> Failure to fetch and update tasks: \(error.localizedDescription)")

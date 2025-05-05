@@ -21,32 +21,9 @@
 		637643972DC41B3A00A4E1A3 /* KindlingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KindlingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		6330C65A2DC967E200C95A92 /* Exceptions for "KindlingUnitTests" folder in "KindlingTests" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Mocks/MockModelContext.swift,
-				TaskRepositoryTestCase.swift,
-			);
-			target = 637643962DC41B3A00A4E1A3 /* KindlingTests */;
-		};
-		6330C65B2DC967EA00C95A92 /* Exceptions for "KindlingUnitTests" folder in "Kindling" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Mocks/MockModelContext.swift,
-				TaskRepositoryTestCase.swift,
-			);
-			target = 637643862DC41B3A00A4E1A3 /* Kindling */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		6330C6562DC967C500C95A92 /* KindlingUnitTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				6330C65B2DC967EA00C95A92 /* Exceptions for "KindlingUnitTests" folder in "Kindling" target */,
-				6330C65A2DC967E200C95A92 /* Exceptions for "KindlingUnitTests" folder in "KindlingTests" target */,
-			);
 			path = KindlingUnitTests;
 			sourceTree = "<group>";
 		};
@@ -110,7 +87,6 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				6330C6562DC967C500C95A92 /* KindlingUnitTests */,
 				637643892DC41B3A00A4E1A3 /* Kindling */,
 			);
 			name = Kindling;
@@ -132,6 +108,9 @@
 			);
 			dependencies = (
 				637643992DC41B3A00A4E1A3 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				6330C6562DC967C500C95A92 /* KindlingUnitTests */,
 			);
 			name = KindlingTests;
 			packageProductDependencies = (
