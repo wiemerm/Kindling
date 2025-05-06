@@ -10,49 +10,64 @@ import SwiftUI
 
 @Observable
 class TodoListViewModel {
-    private(set) var todos = [ToDo]()
-    private let service: TaskService
+    private(set) var tasks = [ToDo]()
+    // Better yet have error able to create its own messaging for display and set it rather than Bool
+    private(set) var showError = false
 
-    init(dataSource: TaskService) {
-        self.service = dataSource
-        fetchStoredTasks()
-    }
+    private let taskService: TaskService
 
-    func fetchStoredTasks() {
+    init(taskService: TaskService = DefaultTaskService()) {
+        self.taskService = taskService
+
         Task {
-//            todos = await service.loadLocalTaskItems()
+            await fetchStoredTasks()
         }
     }
 
+    func fetchStoredTasks() async {
+        showError = false
+            do {
+                tasks = try await taskService.loadLocalTasks()
+            } catch {
+                showError = true
+            }
+    }
+
     func addTodo(title: String) {
-        // For the sake of example limiting to userId 1
-        // This would change when supporting switching users as json includes more than userId: 1
-        let newTodo = ToDo(id: todos.count, title: title, userId: 1, completed: false)
         Task {
-//            await service.insert(newTodo)
-            fetchStoredTasks()
+            showError = false
+            do {
+                // For the sake of simplicity for this assuming 1 user and only using userId: 1
+                let newTodo = ToDo(id: abs(UUID().hashValue), title: title, userId: 1, completed: false)
+                tasks = try await taskService.insert(newTodo)
+            } catch {
+                showError = true
+            }
         }
     }
 
     func delete(at indexSet: IndexSet) {
+        guard !tasks.isEmpty else { return }
+
         indexSet.forEach { index in
-            let todo = todos[index]
+            let taskToDelete = tasks[index]
             Task {
-//                await service.delete(todo)
-                fetchStoredTasks()
+                showError = false
+                do {
+                    tasks = try await taskService.delete(taskToDelete)
+                } catch {
+                    showError = true
+                }
             }
         }
     }
 
-    func importTasks() {
-        Task {
-            do {
-//                try await service.fetchRemoteTaskItems()
-                fetchStoredTasks()
-            } catch {
-                print(">>> Failure to fetch and update tasks: \(error.localizedDescription)")
-                // Would want to handle error here, propogating it to end user
-            }
+    func importTasks() async {
+        do {
+            showError = false
+            tasks = try await taskService.fetchRemoteTasks()
+        } catch {
+            showError = true
         }
     }
 }

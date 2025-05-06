@@ -7,11 +7,11 @@
 
 import Foundation
 
-protocol NetworkService {
+protocol NetworkRepository {
     func fetchRemoteTasks() async throws -> [ToDo]
 }
 
-struct DefaultNetworkService: NetworkService {
+struct DefaultNetworkRepository: NetworkRepository {
     let client: APIClient
 
     init(client: APIClient = APIClient.shared) {

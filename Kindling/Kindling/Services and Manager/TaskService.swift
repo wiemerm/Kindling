@@ -9,37 +9,43 @@ import SwiftData
 import Foundation
 
 protocol TaskService {
-    func insert(_ item: ToDo) async throws
-    func delete(_ item: ToDo) async throws
+    func insert(_ item: ToDo) async throws -> [ToDo]
+    func delete(_ item: ToDo) async throws -> [ToDo]
     func loadLocalTasks() async throws -> [ToDo]
-    func fetchRemoteTasks() async throws
+    func fetchRemoteTasks() async throws -> [ToDo]
 }
 
 class DefaultTaskService: TaskService {
     private let taskRepository: TaskRepository
-//    private let networkService: NetworkService
+    private let networkRepository: NetworkRepository
 
-    init(taskRepository: TaskRepository) {
+    init(
+        taskRepository: TaskRepository = KindlingApp.shared.taskRepository,
+        networkRepository: NetworkRepository = DefaultNetworkRepository()
+    ) {
         self.taskRepository = taskRepository
+        self.networkRepository = networkRepository
     }
 
     func loadLocalTasks() async throws -> [ToDo] {
-        // Limitting to a hard-coded userId of 1 as filtering on other users would occur w/
-        // a switch user functionality and introduction of some type of User
-        //        await manager.loadLocalTaskItems().filter { $0.userId == 1 }
+        // Limiting to a hard-coded userId of 1 as filtering on other users would occur w/
+        // a switch user functionality and introduction of some model of User
         try await taskRepository.loadLocalItems()
     }
 
-    func insert(_ item: ToDo) async throws {
-        try await taskRepository.insert(item)
+    func insert(_ item: ToDo) async throws -> [ToDo] {
+        try await taskRepository.insert([item])
+        return try await loadLocalTasks()
     }
 
-    func delete(_ item: ToDo) async throws {
+    func delete(_ item: ToDo) async throws -> [ToDo] {
         try await taskRepository.delete(item)
+        return try await loadLocalTasks()
     }
 
-    func fetchRemoteTasks() async throws {
-//        let remoteTasks = try await networkService.fetchRemoteTasks()
-//        await manager.insert(remoteTasks)
+    func fetchRemoteTasks() async throws -> [ToDo] {
+        let remoteTasks = try await networkRepository.fetchRemoteTasks()
+        try await taskRepository.insert(remoteTasks)
+        return try await taskRepository.loadLocalItems()
     }
 }

@@ -8,28 +8,27 @@
 import SwiftUI
 
 struct TodoListView: View {
-//    @State private var viewModel = TodoListViewModel(dataSource: DefaultTaskService(taskRepository: DefaultTaskRepository, ))
+    @State private var viewModel = TodoListViewModel()
 
     var body: some View {
-//        VStack(alignment: .leading, spacing: 0) {
+        VStack(alignment: .leading, spacing: 0) {
 //            QuickAddToDoView(addAction: viewModel.addTodo(title:))
 //                .padding(.horizontal, Spacing.large)
-//            List {
-//                ForEach(viewModel.todos) { todoItem in
-//                    TodoListItem(todo: todoItem)
-//                        .listRowBackground(
-//                            RoundedRectangle(cornerRadius: Spacing.small)
-//                                .fill(Color.secondaryBackground)
-//                        )
-//                }
+            List {
+                ForEach(viewModel.tasks) { item in
+                    TodoListItem(todo: item)
+                        .listRowBackground(
+                            RoundedRectangle(cornerRadius: Spacing.small)
+                                .fill(Color.secondaryBackground)
+                        )
+                }
 //                .onDelete(perform: viewModel.delete)
-//            }
-//            .listRowSpacing(Spacing.extraSmall)
-//            .scrollContentBackground(.hidden)
-//        }
-//        .background(.primaryBackground)
-//        .navigationHeader(importHandler: viewModel.importTasks)
-        Text("Backtracking")
+            }
+            .listRowSpacing(Spacing.extraSmall)
+            .scrollContentBackground(.hidden)
+        }
+        .background(.primaryBackground)
+        .navigationHeader()
     }
 }
 

@@ -21,11 +21,11 @@ class MockTaskRepository: TaskRepository {
         return tasksToReturn
     }
 
-    func insert(_ item: Kindling.ToDo) async throws {
+    func insert(_ items: [ToDo]) async throws {
         insertCallCount += 1
     }
 
-    func delete(_ item: Kindling.ToDo) async throws {
+    func delete(_ item: ToDo) async throws {
         deleteCallCount += 1
     }
 }
