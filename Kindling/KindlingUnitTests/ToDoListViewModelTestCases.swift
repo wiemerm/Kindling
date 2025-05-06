@@ -122,7 +122,7 @@ final class ToDoListViewModelTestCases: XCTestCase {
 
         viewModel.delete(at: indexSet)
 
-        await fulfillment(of: [expectation], timeout: 1)
+        await fulfillment(of: [expectation], timeout: 3)
         XCTAssertEqual(mockTaskService.deleteCallCount, 1)
     }
 

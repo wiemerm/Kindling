@@ -19,7 +19,6 @@ extension View {
                     if let importHandler {
                         ToolbarItem(placement: .topBarTrailing) {
                             Button {
-                                print("Fetch remote tasks")
                                 importHandler()
                             } label: {
                                 Image(systemName: "square.and.arrow.down")

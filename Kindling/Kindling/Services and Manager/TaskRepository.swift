@@ -25,7 +25,13 @@ actor DefaultTaskRepository: TaskRepository {
 
     func insert(_ items: [ToDo]) async throws {
         for item in items {
-            context.insert(item)
+            let id = item.id
+            let predicate = #Predicate<ToDo> { $0.id == id }
+            let count = try context.fetchCount(FetchDescriptor(predicate: predicate))
+
+            if count == 0 {
+                context.insert(item)
+            }
         }
         try context.save()
     }

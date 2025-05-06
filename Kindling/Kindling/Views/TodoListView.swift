@@ -12,8 +12,8 @@ struct TodoListView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-//            QuickAddToDoView(addAction: viewModel.addTodo(title:))
-//                .padding(.horizontal, Spacing.large)
+            QuickAddToDoView(addAction: viewModel.addTodo(title:))
+                .padding(.horizontal, Spacing.large)
             List {
                 ForEach(viewModel.tasks) { item in
                     TodoListItem(todo: item)
@@ -22,13 +22,15 @@ struct TodoListView: View {
                                 .fill(Color.secondaryBackground)
                         )
                 }
-//                .onDelete(perform: viewModel.delete)
+                .onDelete(perform: viewModel.delete)
             }
             .listRowSpacing(Spacing.extraSmall)
             .scrollContentBackground(.hidden)
         }
         .background(.primaryBackground)
-        .navigationHeader()
+        .navigationHeader {
+            Task { await viewModel.importTasks() }
+        }
     }
 }
 

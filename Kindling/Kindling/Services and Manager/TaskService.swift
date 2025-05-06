@@ -44,7 +44,9 @@ class DefaultTaskService: TaskService {
     }
 
     func fetchRemoteTasks() async throws -> [ToDo] {
+        // For the sake of simplicity w/o there being different users only import userId 1
         let remoteTasks = try await networkRepository.fetchRemoteTasks()
+            .filter { $0.userId == 1 }
         try await taskRepository.insert(remoteTasks)
         return try await taskRepository.loadLocalItems()
     }
