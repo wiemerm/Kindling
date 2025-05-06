@@ -21,7 +21,7 @@ extension View {
                             Button {
                                 importHandler()
                             } label: {
-                                Image(systemName: "square.and.arrow.down")
+                                Image(systemName: SystemImage.download.systemName)
                                     .tint(.primaryAccent)
                             }
                         }

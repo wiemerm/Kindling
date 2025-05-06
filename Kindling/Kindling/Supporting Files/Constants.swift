@@ -28,3 +28,19 @@ struct CornerRadius {
 struct TappableSize {
     static let minimum: CGFloat = 44
 }
+
+enum SystemImage: String {
+    case flame
+    case download
+    case circleWithCheckmark
+    case circle
+
+    var systemName: String {
+        switch self {
+        case .flame: return "flame"
+        case .download: return "square.and.arrow.down"
+        case .circle: return "circle"
+        case .circleWithCheckmark: return "checkmark.circle.fill"
+        }
+    }
+}

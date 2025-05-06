@@ -12,15 +12,18 @@ struct TodoListItem: View {
 
     var body: some View {
         HStack(spacing: Spacing.small) {
-            Image(systemName: todo.completed ? "checkmark.circle.fill" : "circle")
-                .symbolRenderingMode(.hierarchical)
-                .resizable()
-                .foregroundStyle(Color.primaryAccent)
-                .frame(width: ImageSize.small, height: ImageSize.small)
-                .onTapGesture {
-                    todo.completed.toggle()
-                    // TODO: propogate the toggling the completion such that it can be saved in database
-                }
+            Image(
+                systemName: todo.completed ?
+                SystemImage.circleWithCheckmark.systemName :
+                    SystemImage.circle.systemName
+            )
+            .symbolRenderingMode(.hierarchical)
+            .resizable()
+            .foregroundStyle(Color.primaryAccent)
+            .frame(width: ImageSize.small, height: ImageSize.small)
+            .onTapGesture {
+                todo.completed.toggle()
+            }
 
             Text(todo.title)
                 .font(.body)

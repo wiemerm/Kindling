@@ -10,7 +10,7 @@ import SwiftUI
 struct MainNavigationHeader: View {
     var body: some View {
         HStack(spacing: Spacing.extraExtraSmall) {
-            Image(systemName: "flame")
+            Image(systemName: SystemImage.flame.systemName)
                 .symbolRenderingMode(.hierarchical)
                 .resizable()
 
